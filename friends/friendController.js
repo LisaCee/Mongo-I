@@ -25,6 +25,20 @@ router
             .catch(err => {
                 res.status(500).json(err);
             });
-    })
+    });
+
+router
+    .route('/:id')
+    .get((req, res) => {
+        const friendId = req.params.id;
+        Friend
+            .findById(friendId)
+            .then(friend => {
+                res.status(200).json(friend);
+            })
+            .catch(err => {
+                res.status(500).json(err);
+            })
+    })    
 
 module.exports = router;
